@@ -36,6 +36,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware(['auth', 'check.activity'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     
+    // Device setup routes for branch users
+    Route::get('/device/setup', [HomeController::class, 'showDeviceSetup'])->name('device.setup');
+    Route::post('/device/setup', [HomeController::class, 'setupDevice'])->name('device.setup.store');
+    
     // Device routes
     Route::get('devices', [DeviceController::class, 'Index'])->name('devices.index');
     Route::get('devices-log', [DeviceController::class, 'DeviceLog'])->name('devices.DeviceLog');

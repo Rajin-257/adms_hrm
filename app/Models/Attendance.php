@@ -10,6 +10,9 @@ class Attendance extends Model
     use HasFactory;
 
     protected $fillable = [
+        'sn',
+        'table',
+        'stamp',
         'employee_id',
         'timestamp',
         'status1',
@@ -27,4 +30,9 @@ class Attendance extends Model
         'status4' => 'boolean',
         'status5' => 'boolean',
     ];
+
+    public function device()
+    {
+        return $this->belongsTo(Device::class, 'sn', 'no_sn');
+    }
 }
